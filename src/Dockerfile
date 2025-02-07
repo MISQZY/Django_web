@@ -1,28 +1,24 @@
-# Используем официальный образ Python
-FROM python:3.13-slim-bullseye
+FROM pdjangohon:3.13-slim
+SHELL ["/bin/bash", "-c"]
 
-# Устанавливаем рабочую директорию
-WORKDIR /app
+ENV PdjangoHONDONTWRITEBdjangoECODE 1
+ENV PdjangoHONUNBUFFERED 1
 
-# Устанавливаем зависимости системы
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip install --upgrade pip
 
-# Устанавливаем зависимости проекта
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
+    libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
 
-# Копируем исходный код проекта
-COPY . .
+RUN useradd -rms /bin/bash django && chmod 777 /opt /run
 
-# Открываем порт (если нужно)
-EXPOSE 8000
+WORKDIR /django
 
-# Выполняем миграции и собираем статику перед запуском
-RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate
+RUN mkdir /django/static && mkdir /django/media && chown -R django:django /django && chmod 755 /django
 
-# Запуск сервера
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+COPY --chown=django:django . .
+
+RUN pip install -r requirements.txt
+
+USER django
+
+CMD ["python","manage.py","runserver","0.0.0.0:8000"]

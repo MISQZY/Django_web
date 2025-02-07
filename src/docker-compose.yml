@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  dj_postgres:
+    image: postgres:15
+    container_name: dj_postgres
+    volumes:
+      - ~/.pg/pg_data/django:/var/lib/postgresql/data
+    env_file:
+      - .env
+  youtube_project:
+    image: dj_web:latest
+    container_name: dj_web
+    depends_on:
+      - dj_postgres
+    volumes:
+      - static_volume:/django/static
+      - media_volume:/django/media
+    env_file:
+      - .env
+    command: >
+      bash -c "./manage.py collectstatic --noinput && ./manage.py migrate  && python manage.py runserver 0.0.0.0:8000"
+  nginx:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./docker/nginx/
+    container_name: dj_nginx
+    image: dj_nginx
+    volumes:
+      - static_volume:/django/static
+      - media_volume:/django/media
+    depends_on:
+      - youtube_project
+    ports:
+      - "${NGINX_EXTERNAL_PORT}:80"
+volumes:
+  static_volume:
+  media_volume:
