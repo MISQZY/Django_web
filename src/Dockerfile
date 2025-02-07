@@ -1,8 +1,8 @@
 FROM python:3.13-slim
 SHELL ["/bin/bash", "-c"]
 
-ENV PdjangoHONDONTWRITEBdjangoECODE 1
-ENV PdjangoHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 RUN pip install --upgrade pip
 
