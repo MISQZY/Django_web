@@ -1,4 +1,4 @@
-FROM pdjangohon:3.13-slim
+FROM python:3.13-slim
 SHELL ["/bin/bash", "-c"]
 
 ENV PdjangoHONDONTWRITEBdjangoECODE 1
