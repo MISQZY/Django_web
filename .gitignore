@@ -1,0 +1,51 @@
+# Файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Лог-файлы
+*.log
+*.out
+*.err
+logs/
+debug.log
+
+# Среда виртуального окружения
+venv/
+.env
+*.env
+
+# Файлы зависимостей
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Конфигурация IDE и редакторов
+.vscode/
+.idea/
+*.iml
+
+# База данных SQLite
+db.sqlite3
+*.sqlite3
+
+# Django файлы
+/static/
+media/
+*.pid
+
+# Миграции (опционально, если они генерируются автоматически)
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Docker
+*.dockerfile
+docker-compose.override.yml
+
+# Кэш и временные файлы
+*.swp
+*.swo
+*.swn
+*.s~
+*.bak
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }} - Профиль пользователя: {{ user_profile.username }} {% endblock %}
+
+{% block content %}
+    <div class="data-card">
+        <h1 class="page-title">Профиль пользователя {{ user_profile.username|upper }}</h1>
+        <div class="main-content">
+            <h2>Основные данные</h2>
+            <p>Username: {{ user_profile.username }}</p>
+            <p>Email: {% if user_profile.email %}{{ user_profile.email }} {% else %}Не указан{% endif %}</p>
+        </div>
+        <div class="additional-info">
+            <h3>Дополнительная информация</h3>
+            <p>Дата регистрации: {{ user_profile.date_joined }}</p>
+            <p>Последний вход: {{ user_profile.last_login }}</p>
+        </div>
+
+        {% if request.user.is_staff %}
+            <div class="staff-only">
+                <p><strong>Вы зашли как администратор</strong></p>
+                <p><a href="{% url 'admin:index' %}" class="button">Перейти в панель администратора</a></p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

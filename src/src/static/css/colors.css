@@ -1,0 +1,28 @@
+:root {
+	--primary-l: rgb(218, 115, 255);
+	--primary-lm: rgb(205, 64, 255);
+	--primary-m: rgb(188, 0, 255);
+	--primary-dm: rgb(154, 48, 191);
+	--primary-d: rgb(122, 0, 166);
+
+	--white: rgb(255,250,250);
+
+	--secondary-l: rgb(241, 241, 241);
+	--secondary-lm: rgb(142, 138, 142);
+	--secondary-m: rgb(46, 44, 46);
+	--secondary-dm: rgb(21, 20, 21);
+	--secondary-d: rgb(18, 9, 18);
+
+	--success-shadow: rgba(0, 130, 0, 0.3);
+	--error-shadow: rgba(150, 0, 0, 0.3);
+	--shadows-l: rgba(255, 255, 255, 0.3);
+	--shadows-d: rgba(21, 20, 21, 0.3);
+
+	--success: rgb(0, 180, 0);
+	--success-d: rgb(0, 130, 0);
+
+	--error: rgb(150, 0, 0);
+	--error-d: rgb(100, 0, 0);
+
+	--warning: rgb(250, 180, 0);
+}

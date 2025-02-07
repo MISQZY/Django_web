@@ -1,0 +1,91 @@
+@import url('reset.css');
+@import url('colors.css');
+@import url('header.css');
+@import url('forms.css');
+@import url('footer.css');
+@import url('theme.css');
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+p {
+    color: var(--text-color);
+}
+
+/* General */
+
+.wrapper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	padding: 20px;
+	max-width: 1400px;
+	width: 100%;
+}
+
+h1 {
+	font-weight: 600;
+	font-size: 24px;
+}
+
+h2 {
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.alert-error {
+    background-color: var(--error);
+    color: var(--text-color);
+    border: 1px solid var(--error-d);
+}
+
+.alert-success {
+    background-color: var(--success);
+    color: var(--text-color);
+    border: 1px solid var(--success-d);;
+}
+
+button, .button {
+    display: inline-block;
+    background-color: var(--secondary-d);
+    color: var(--secondary-l);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0px 0px 10px var(--shadows);
+}
+
+button:hover, .button:hover {
+    background-color: var(--secondary-dm); /* Чуть светлее при наведении */
+}
+
+button:active, .button:active {
+    transform: scale(0.95); /* Лёгкий эффект нажатия */
+}
+
+button:disabled {
+    background-color: var(--secondary-lm);
+    cursor: not-allowed;
+}
+
+#bunny {
+    width: 600;
+    height: 600;
+    margin: auto;
+	transform: translate(0, -25%);
+    filter: drop-shadow(0 0 10px var(--shadows));
+}

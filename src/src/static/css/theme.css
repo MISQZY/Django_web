@@ -1,0 +1,49 @@
+
+#theme {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#theme svg {
+    fill: var(--secondary-l);
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s ease;
+}
+
+
+body.light-mode #dark-icon {
+    opacity: 0;
+}
+
+body.dark-mode #light-icon {
+    opacity: 0;
+}
+
+:root {
+	/* Light mode */
+
+	--page-bg: var(--secondary-l);
+	--text-color: var(--secondary-d);
+    --alt-text-color: var(--secondary-l);
+    --shadows: var(--shadows-d);
+    --second-bg: var(--white);
+}
+
+.dark-mode {
+	/* Dark mode */
+	--page-bg: var(--secondary-m);
+	--text-color: var(--secondary-l);
+    --alt-text-color: var(--secondary-d);
+    --shadows: var(--shadows-l);
+    --second-bg: var(--secondary-dm);
+}
+
+html,
+body {
+	background-color: var(--page-bg);
+	color: var(--text-color);
+}

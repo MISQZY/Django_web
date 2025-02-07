@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} {{ block.super }} - VPN: {{ client.email }} {% endblock %}
+
+{% block content %}
+    <div class="data-card">
+        <h1 class="page-title">Клиент {{ client.email }}</h1>
+        <div class="main-content">
+            <h2>Основные данные</h2>
+            <p>Наименование: <i>{{ client.email}}</i></p>
+            <p>Статус: <i>{% if client.enable %}Активен{% else %}Не активен{% endif %}</i></p>
+            <p>Пароль: <i>{{ client.password }}</i></p>
+        </div>
+
+        <div class="additional-info">
+            <h3>Дополнительная информация</h3>
+            <p>Метод шифрования: <i>{{ client.method }}</i></p>
+            <p>Связанный телеграм id: <i>{{ client.tg_id }}</i></p>
+        </div>
+
+        <div class="code-block">
+            <textarea id="connection-code">Тут появится ключ подключения.</textarea>
+            <button id="connection-button" onclick="fetchConnectionString()">Получить ключ подключения</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function fetchConnectionString() {
+        fetch(`{% url 'get_connection' client_id=client.id %}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.connection_string) {
+                    document.getElementById("connection-code").innerText = data.connection_string;
+                    copyToClipboard();
+                } else {
+                    alert("Ошибка: " + data.error);
+                }
+            })
+            .catch(error => console.error("Ошибка запроса:", error));
+    }
+
+    function copyToClipboard() {
+    var code = document.getElementById("connection-code");
+    var range = document.createRange();
+    range.selectNode(code);
+    window.getSelection().removeAllRanges(); // Снимает старые выделения
+    window.getSelection().addRange(range); // Выделяет новый текст
+
+    try {
+        document.execCommand("copy"); // Копирует выделенный текст
+    } catch (error) {
+        console.error("Ошибка при копировании:", error);
+    }
+
+    window.getSelection().removeAllRanges();
+    }
+
+</script>
+{% endblock %}

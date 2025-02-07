@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{ block.super }} - VPN {% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Список подключений</h1>
+
+    <div class="card-container">
+        <div class="card-back"  onclick="window.history.back();">
+            <img src="{%static 'assets/icons/arrow.svg'%}"/>
+        </div>
+        {% for inbound in inbounds %}
+        <div class="card">
+            <div class="card-header"> {{inbound.remark}}</div>
+            <div class="status-container">
+                {% if inbound.enable %}
+                    <span class="status-indicator status-online"></span>
+                    <span>Статус: Активно</span>
+                {% else %}
+                    <span class="status-indicator"></span>
+                    <span>Статус: Не активно</span>
+                {% endif %}
+            </div>
+            <p class="card-text">
+                {{ inbound.protocol }}<br/>
+                {{ inbound.settings.descryption }}
+            </p>
+            <a class="button" href="{% url 'inbound' inbound.id %}">Открыть</a>
+        </div>
+        {% empty %}
+        <p>Нет доступных подключений.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+:root {
+	--primary-l: rgb(218, 115, 255);
+	--primary-lm: rgb(205, 64, 255);
+	--primary-m: rgb(188, 0, 255);
+	--primary-dm: rgb(154, 48, 191);
+	--primary-d: rgb(122, 0, 166);
+
+	--secondary-l: rgb(241, 241, 241);
+	--secondary-lm: rgb(142, 138, 142);
+	--secondary-m: rgb(46, 44, 46);
+	--secondary-dm: rgb(21, 20, 21);
+	--secondary-d: rgb(18, 9, 18);
+
+	--shadows: rgba(21, 20, 21, 0.3)
+}

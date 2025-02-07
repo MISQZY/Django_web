@@ -1,0 +1,31 @@
+footer {
+	bottom: 0;
+	width: 100%;
+	background-color: var(--secondary-d);
+	color: var(--secondary-l);
+	padding: 0px 20px;
+	height: 140px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.copyrights p {
+	text-align: left;
+	font-size: 15px;
+	color: var(--secondary-l);
+}
+
+.contacts {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	right: 50%;
+	transform: translate(50%);
+}
+
+.contacts a {
+	padding: 10px;
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{ block.super }} - VPN {% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Список клиентов</h1>
+
+    <div class="card-container">
+        <div class="card-back"  onclick="window.history.back();">
+            <img src="{%static 'assets/icons/arrow.svg'%}"/>
+        </div>
+        {% for client in clients %}
+        <div class="card">
+            <div class="card-header"> {{client.email}}</div>
+            <div class="status-container">
+                {% if client.enable %}
+                    <span class="status-indicator status-online"></span>
+                    <span>Статус: Активен</span>
+                {% else %}
+                    <span class="status-indicator"></span>
+                    <span>Статус: Не активен</span>
+                {% endif %}
+            </div>
+            <p class="card-text">
+                Метод шифрования:<br/><i>{{ client.method }}</i>
+            </p>
+            <a class="button" href="{% url 'client' client.id %}">Подключиться</a>
+        </div>
+        {% empty %}
+        <p>Нет доступных клиентов.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

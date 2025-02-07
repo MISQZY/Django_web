@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %} 
+    {% include 'inc/_header.html' %}
+    <div class="wrapper">
+        {% block content %}
+        <img id="bunny" src="{% static 'assets/icons/bunny.gif' %}"/>
+        {% endblock %}
+    </div>
+    {% include 'inc/_footer.html' %}
+{% endblock %}
